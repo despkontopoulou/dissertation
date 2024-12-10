@@ -34,41 +34,57 @@ plt.title("weighted graph")
 #plt.show()
 
 
-def dijkstra(G, start):
+def shortest_distance(G, start, end):
+    # initialize distances: set all nodes to infinity since the distance is uknown
     distances= {node: float("inf") for node in G.nodes}
-    distances[start] = 0
+    distances[start] = 0 # distance from start node to self is 0
 
-    #priority queue initialization
+    # priority queue initialization
     pq = [(0,start)]
-    heapify(pq)
-    #set to hold visited nodes
+    heapify(pq) #make list a heap
+
+    # set to hold visited nodes
     visited = set()
 
-    while pq:
-        current_distance, current_node = heappop(pq) #get node with min distance
+    # predecessors dictionary to reconstruct path
+    predecessors = {node: None for node in G.nodes}
 
+    # while the priority queue is not empty
+    while pq:
+        # pop node with the smallest distance
+        current_distance, current_node = heappop(pq) 
+
+        # skip if current node has been visited
         if current_node in visited:
-            continue #skip if current node has been visited
+            continue 
         visited.add(current_node) # else add to visited
 
+        # stop early if we reach the end node
+        if current_node == end:
+            break
+
+        # explore neighbors of current node
         for neighbor in G.neighbors(current_node):
+            # get the weight of the edge and from current node to neighbor and calulate potential distance
             edge_weight = G[current_node][neighbor].get('weight',1)
-            distance = current_distance + edge_weight
+            distance = current_distance + edge_weight # -potential- distance
 
-            if distance < distances[neighbor]:
+            if distance < distances[neighbor]: # if the distance is shorter, update it
                 distances[neighbor] = distance
-                heappush(pq,(distance, neighbor))
+                predecessors[neighbor] = current_node # record that the path to neighbor is via the current_node 
+                heappush(pq,(distance, neighbor)) # add neighbor to priority queue with new distance
 
-    return distances
-    
-print("Distances from A")
-distances_from_a= dijkstra(G, 'A')
-print(distances_from_a, "\n")
-to_F= distances_from_a['F']
-print(f"The shortest distance from A to F is {to_F}\n")
+    # return shortest distance to end node and the reconstructed path
+    return distances[end], reconstruct_path(predecessors, start, end)
 
-print("Distances from B")
-distances_from_b= dijkstra(G, 'B')
-print(distances_from_b, "\n")
-to_F= distances_from_b['F']
-print(f"The shortest distance from B to F is {to_F} \n")
+def reconstruct_path(predecessors, start, end):
+    path = []
+    current = end # traceback from destination node
+    # follow predecessors until start node
+    while current is not None:
+        path.insert(0, current) # insert current node at the beginning
+        current = predecessors[current] # move to the predecessor of the current node
+    return path if path[0] == start else [] #the path is valid if the first node is the start node
+
+
+
