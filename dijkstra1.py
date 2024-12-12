@@ -77,67 +77,68 @@ def reconstruct_path(predecessors, start, end):
     return path 
 
 
-# # test1
-# # undirected weighted graph with path from start to end
-# G = nx.Graph()
-# G.add_edge('A','B', weight = 3)
-# G.add_edge('A','C', weight = 3)
-# G.add_edge('B','D', weight = 3.5)
-# G.add_edge('B','E', weight = 2.8)
-# G.add_edge('C','E', weight = 2.8)
-# G.add_edge('C','F', weight = 3.5)
-# G.add_edge('D','E', weight = 3.2)
-# G.add_edge('D','G', weight = 10)
-# G.add_edge('E','G', weight = 7)
-# G.add_edge('F','G', weight = 2.5)
 
-# edge_labels= nx.get_edge_attributes(G,'weight')
-# pos=nx.planar_layout(G)
-# nx.draw(G,pos, with_labels = True)
-# nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
-# plt.title("Weighted graph with path to all nodes")
-# plt.show()
+# test1
+# undirected weighted graph with path from start to end
+G = nx.Graph()
+G.add_edge('A','B', weight = 3)
+G.add_edge('A','C', weight = 3)
+G.add_edge('B','D', weight = 3.5)
+G.add_edge('B','E', weight = 2.8)
+G.add_edge('C','E', weight = 2.8)
+G.add_edge('C','F', weight = 3.5)
+G.add_edge('D','E', weight = 3.2)
+G.add_edge('D','G', weight = 10)
+G.add_edge('E','G', weight = 7)
+G.add_edge('F','G', weight = 2.5)
 
-# distance, path = dijkstra(G,'A','G')
-# print(f"Shortest distance from A to G: {distance}")
-# print(f"Path: {path}\n")
+edge_labels= nx.get_edge_attributes(G,'weight')
+pos=nx.planar_layout(G)
+nx.draw(G,pos, with_labels = True)
+nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
+plt.title("Weighted graph with path to all nodes")
+plt.show()
+
+distance, path = dijkstra(G,'A','G')
+print(f"Shortest distance from A to G: {distance}")
+print(f"Path: {path}\n")
 
 
-# # test2
-# # undirected weighted graph without path from start to end
-# H = nx.Graph()
-# H.add_edge('A','B', weight = 3)
-# H.add_edge('E','D', weight = 3)
-# H.add_edge('D','F', weight = 3.5)
+# test2
+# undirected weighted graph without path from start to end
+H = nx.Graph()
+H.add_edge('A','B', weight = 3)
+H.add_edge('E','D', weight = 3)
+H.add_edge('D','F', weight = 3.5)
 
-# edge_labels= nx.get_edge_attributes(H,'weight')
-# pos=nx.planar_layout(H)
-# nx.draw(H,pos, with_labels = True)
-# nx.draw_networkx_edge_labels(H, pos, edge_labels=edge_labels)
-# plt.title("Weighted graph with no path to all nodes")
-# plt.show()
+edge_labels= nx.get_edge_attributes(H,'weight')
+pos=nx.planar_layout(H)
+nx.draw(H,pos, with_labels = True)
+nx.draw_networkx_edge_labels(H, pos, edge_labels=edge_labels)
+plt.title("Weighted graph with no path to all nodes")
+plt.show()
 
-# distance, path = dijkstra(H,'A','F')
-# print(f"Shortest distance from A to F: {distance}")
-# print(f"Path: {path}\n")
+distance, path = dijkstra(H,'A','F')
+print(f"Shortest distance from A to F: {distance}")
+print(f"Path: {path}\n")
 
-# #test3
-# # directed graph
-# DG = nx.DiGraph()
-# DG.add_edge('A', 'B', weight= 3.5)
-# DG.add_edge('A', 'C', weight= 1.2)
-# DG.add_edge('B', 'D', weight= 2)
-# DG.add_edge('C', 'D', weight= 4.5)
-# DG.add_edge('C', 'E', weight= 2)
-# DG.add_edge('D', 'E', weight= 3)
+#test3
+# directed graph
+DG = nx.DiGraph()
+DG.add_edge('A', 'B', weight= 3.5)
+DG.add_edge('A', 'C', weight= 1.2)
+DG.add_edge('B', 'D', weight= 2)
+DG.add_edge('C', 'D', weight= 4.5)
+DG.add_edge('C', 'E', weight= 2)
+DG.add_edge('D', 'E', weight= 3)
 
-# edge_labels = nx.get_edge_attributes(DG, 'weight')
-# pos = nx.spring_layout(DG)
-# nx.draw(DG, pos, with_labels=True, arrows=True)
-# nx.draw_networkx_edge_labels(DG, pos, edge_labels=edge_labels)
-# plt.title("Directed Weighted Graph")
-# plt.show()
+edge_labels = nx.get_edge_attributes(DG, 'weight')
+pos = nx.spring_layout(DG)
+nx.draw(DG, pos, with_labels=True, arrows=True)
+nx.draw_networkx_edge_labels(DG, pos, edge_labels=edge_labels)
+plt.title("Directed Weighted Graph")
+plt.show()
 
-# distance, path = dijkstra(DG,'A','E')
-# print(f"Shortest distance from A to E: {distance}")
-# print(f"Path: {path}\n")
+distance, path = dijkstra(DG,'A','E')
+print(f"Shortest distance from A to E: {distance}")
+print(f"Path: {path}\n")
