@@ -15,26 +15,7 @@ from heapq import heapify, heappop, heappush
     # then go back to step 1 and choose the unexplored node with the smallest value
 
 
-G = nx.Graph()
-G.add_edge('A','B', weight = 3)
-G.add_edge('A','C', weight = 3)
-G.add_edge('B','D', weight = 3.5)
-G.add_edge('B','E', weight = 2.8)
-G.add_edge('C','E', weight = 2.8)
-G.add_edge('C','F', weight = 3.5)
-G.add_edge('D','E', weight = 3.2)
-G.add_edge('D','G', weight = 10)
-G.add_edge('E','G', weight = 7)
-G.add_edge('F','G', weight = 2.5)
-
-edge_labels= nx.get_edge_attributes(G,'weight')
-pos=nx.planar_layout(G)
-nx.draw(G,pos, with_labels = True)
-plt.title("weighted graph")
-#plt.show()
-
-
-def shortest_distance(G, start, end):
+def dijkstra(G, start, end):
     # initialize distances: set all nodes to infinity since the distance is uknown
     distances= {node: float("inf") for node in G.nodes}
     distances[start] = 0 # distance from start node to self is 0
@@ -86,5 +67,25 @@ def reconstruct_path(predecessors, start, end):
         current = predecessors[current] # move to the predecessor of the current node
     return path if path[0] == start else [] #the path is valid if the first node is the start node
 
+# test
+G = nx.Graph()
+G.add_edge('A','B', weight = 3)
+G.add_edge('A','C', weight = 3)
+G.add_edge('B','D', weight = 3.5)
+G.add_edge('B','E', weight = 2.8)
+G.add_edge('C','E', weight = 2.8)
+G.add_edge('C','F', weight = 3.5)
+G.add_edge('D','E', weight = 3.2)
+G.add_edge('D','G', weight = 10)
+G.add_edge('E','G', weight = 7)
+G.add_edge('F','G', weight = 2.5)
 
+edge_labels= nx.get_edge_attributes(G,'weight')
+pos=nx.planar_layout(G)
+nx.draw(G,pos, with_labels = True)
+plt.title("weighted graph")
+plt.show()
 
+distance, path = dijkstra(G,'A','G')
+print(f"Shortest distance from A to G: {distance}")
+print(f"Path: {path}")
