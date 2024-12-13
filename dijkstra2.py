@@ -5,7 +5,6 @@ class Graph():
         self.graph = graph
 
     def dijkstra(self, start, end):
-        #create distances dictionary, initialize distances to inf and make min priority heap
         distances = {node: float("inf") for node in self.graph}
         distances[start] = 0
         pq = [(0, start)]
@@ -47,7 +46,6 @@ class Graph():
         return path
     
 
-# graph class uses a predefined dictionary
 graph = {
    "A": {"B": 3, "C": 3},
    "B": {"A": 3, "D": 3.5, "E": 2.8},
@@ -57,7 +55,7 @@ graph = {
    "F": {"G": 2.5, "C": 3.5},
    "G": {"F": 2.5, "E": 7, "D": 10},
 }
-
+# tests
 G = Graph(graph)
 start = "A"
 end = "G"
