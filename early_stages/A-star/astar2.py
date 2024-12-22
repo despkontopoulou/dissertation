@@ -1,50 +1,51 @@
 from heapq import heappop, heappush
 import math
 
-class Graph():
-    def __init__(self, graph, coords):
+class Graph:
+    def __init__(self, graph, coords): 
         self.graph = graph
         self.coords = coords
 
-    def get_neighbours(self, node):
+    def get_neighbours(self, node): 
         return self.graph.get(node,{})
     
-    def get_coords(self,node):
+    def get_coords(self,node): 
         return self.coords.get(node)
     
-class Astar():
+class Astar: # initialize with graph obj
     def __init__(self, graph):
         self.graph= graph
     
-    def heuristic(self, node, goal):
+    def heuristic(self, node, goal): # get euclidean distance
         current_x, current_y = self.graph.get_coords(node)
         goal_x, goal_y = self.graph.get_coords(goal)
-        return math.sqrt((goal_x-current_x)**2 +(goal_y-current_y)**2) # euclidean 
+        return math.sqrt((goal_x-current_x)**2 +(goal_y-current_y)**2)  
 
-    def astar_search(self, start, goal):
-        open = []
-        heappush(open, (0,start))
-        g_costs = {start: 0}
-        f_costs = {start: self.heuristic(start,goal)}
-        predecessors = {}
+    def astar_search(self, start, goal): # main loop
+        open = [] # min priority heap
+        #we dont have a closed list, we use the g_costs list to track distances
+        heappush(open, (0,start)) # push start node to open 
+        g_costs = {start: 0} # g_costs storing from the start (equivalent to distances list of dijkstra)
+        f_costs = {start: self.heuristic(start,goal)} # f cost list, uses both the sctual distance and the heuristic
+        predecessors = {} # stores path (has the predecessors of all nodes)
 
         while open:
-            current_f, current= heappop(open)
-            if current == goal:
+            current_f, current= heappop(open) #pop node with smallest f cost
+            if current == goal:#if we reach the goal end loop and reconstruct path
                 return self.reconstruct_path(predecessors, start, goal)
             
-            for neighbour, weight in self.graph.get_neighbours(current).items():
-                g_cost = g_costs[current] + weight
+            for neighbour, weight in self.graph.get_neighbours(current).items():# explore all neighbours of current
+                g_cost = g_costs[current] + weight # calculate g cost from start to neighbour
 
-                if neighbour not in g_costs or g_cost < g_costs[neighbour]:
-                    g_costs[neighbour] = g_cost
-                    f_cost = g_cost + self.heuristic(neighbour, goal)
-                    f_costs[neighbour]= f_cost
-                    predecessors[neighbour] = current
-                    heappush(open,(f_cost,neighbour))
+                if neighbour not in g_costs or g_cost < g_costs[neighbour]: #if neighbour has not been visited or there is a bigger g cost
+                    g_costs[neighbour] = g_cost # update g
+                    f_cost = g_cost + self.heuristic(neighbour, goal) # calculate f
+                    f_costs[neighbour]= f_cost # update f
+                    predecessors[neighbour] = current # save predecessor
+                    heappush(open,(f_cost,neighbour)) # push neighbour into heap with new cost
         return []
 
-    def reconstruct_path(self, predecessors, start, goal):
+    def reconstruct_path(self, predecessors, start, goal):#reconstruct path
         path = []
         current = goal
         while current != start:
