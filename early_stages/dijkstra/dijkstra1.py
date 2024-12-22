@@ -1,4 +1,3 @@
-import time
 import networkx as nx
 import matplotlib.pyplot as plt
 from heapq import heapify, heappop, heappush
@@ -71,7 +70,6 @@ def reconstruct_path(predecessors, start, end):
     while current is not None:
         path.insert(0, current) # insert current node at the beginning
         current = predecessors[current] # move to the predecessor of the current node
-    
     if not path or path[0] != start:
         return []
     return path 

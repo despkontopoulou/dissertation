@@ -1,4 +1,5 @@
 from heapq import heappop, heappush
+#a star on grid with uniform weights
 class Node():
     def __init__(self, x, y, g_cost=0, h_cost=0): # node class init
         self.x = x # coords
