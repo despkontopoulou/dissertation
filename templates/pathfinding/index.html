@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pathfinding Visualizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/base.css') }}">
+</head>
+<body>
+    <h1>Pathfinding Visualizer</h1>
+
+    <label for="start">Start Node:</label>
+    <input type="text" id="start" placeholder="Enter start node">
+
+    <label for="goal">Goal Node:</label>
+    <input type="text" id="goal" placeholder="Enter goal node">
+
+    <button onclick="findPath()">Find Path</button>
+    <div id="result"></div>
+
+    <script src="{{ url_for('static', filename='JavaScript/pathfinding/script.js') }}"></script>
+</body>
+</html>
