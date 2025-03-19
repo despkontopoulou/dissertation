@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="044a156b-d4c6-4159-ad14-0fdb33618225" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/helpers/map.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cache/254065d5145e17a17835a0a2b4f09d6bb332a8cc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cache/a6207dd4aa98b864bc5728c9b764f1416b4de5c2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/pathfinding/map_template.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/pathfinding_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/pathfinding_routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pathfinding/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pathfinding/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +42,7 @@
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;Flask server.PathfindingTest.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -91,6 +93,10 @@
       <option name="presentableId" value="Default" />
       <updated>1740141151384</updated>
       <workItem from="1740141152274" duration="21469000" />
+      <workItem from="1740506035172" duration="239000" />
+      <workItem from="1740668458933" duration="1928000" />
+      <workItem from="1741182695509" duration="2062000" />
+      <workItem from="1742402953581" duration="3681000" />
     </task>
     <servers />
   </component>
@@ -98,6 +104,6 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PathfindingTest$PathfindingTest.coverage" NAME="PathfindingTest Coverage Results" MODIFIED="1740432460348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PathfindingTest$PathfindingTest.coverage" NAME="PathfindingTest Coverage Results" MODIFIED="1742408545423" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -1,3 +1,4 @@
+import folium
 import osmnx.graph
 from flask import Blueprint, request, jsonify, render_template
 import time
@@ -68,6 +69,36 @@ def find_path():
         "astar": {"path":astar_path, "time":astar_time}
     })
 
-@pathfinding_bp.route('/visualizer')
-def pathfinding_page():
-    return render_template('pathfinding/index.html',geojson= geojson)  # serve visualisation of algorithms page
+@pathfinding_bp.route('/visualize_path')
+def visualize_path():
+    start= request.args.get("start", type=int)
+    goal= request.args.get("goal", type=int)
+
+    if not start or not goal or start not in graph_data or goal not in graph_data:
+        return jsonify({"error": "Invalid start or goal"}), 400
+
+    dijkstra_path= dijkstra.dijkstra_search(start, goal)
+    astar_path= astar.astar_search(start, goal)
+
+    start_lat, start_lon = G.nodes[start]['y'], G.nodes[start]['x']
+    m= folium.Map(location=[start_lat, start_lon],zoom_start=1)
+
+    def nodes_to_coords(path):
+        return [(G.nodes[node]['y'], G.nodes[node]['x']) for node in path]
+
+    # Plot Dijkstra Path in Blue
+    folium.PolyLine(nodes_to_coords(dijkstra_path), color="blue", weight=5, opacity=0.7, tooltip="Dijkstra").add_to(m)
+
+    # Plot A* Path in Red
+    folium.PolyLine(nodes_to_coords(astar_path), color="red", weight=5, opacity=0.7, tooltip="A*").add_to(m)
+
+    # Mark Start and Goal
+    folium.Marker(location=[start_lat, start_lon], popup="Start", icon=folium.Icon(color="green")).add_to(m)
+    goal_lat, goal_lon = G.nodes[goal]['y'], G.nodes[goal]['x']
+    folium.Marker(location=[goal_lat, goal_lon], popup="Goal", icon=folium.Icon(color="red")).add_to(m)
+
+    # Save map to HTML and return it
+    map_path = "static/pathfinding_map.html"
+    m.save(map_path)
+
+    return render_template("pathfinding/map_template.html")
