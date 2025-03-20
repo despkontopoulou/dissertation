@@ -30,3 +30,19 @@ button:hover {
     margin-top: 20px;
     font-size: 18px;
 }
+.map-container {
+    display: flex;
+    flex-direction: column;  /* Stack the divs vertically */
+    align-items: center;  /* Center the maps */
+    gap: 20px;  /* Add space between the maps */
+}
+
+.map-container div {
+    width: 80%; /* Each map div takes 80% of the screen width */
+}
+
+.map-frame {
+    width: 100%;  /* Make iframe fill its parent div */
+    height: 600px;  /* Adjust height for better visibility */
+    border: 1px solid #ccc; /* Optional border */
+}

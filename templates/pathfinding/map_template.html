@@ -2,9 +2,19 @@
 <html>
 <head>
     <title>Pathfinding Visualization</title>
+    <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='CSS/base.css') }}">
 </head>
 <body>
     <h2>Path Visualization</h2>
-    <iframe src="{{ url_for('static', filename='pathfinding_map.html') }}" width="100%" height="600px"></iframe>
+     <div class="map-container">
+        <div>
+            <h3>Dijkstra's Algorithm</h3>
+            <iframe class="map-frame" src="{{ url_for('static', filename='pathfinding_map_Dijkstra.html') }}"></iframe>
+        </div>
+        <div>
+            <h3>A* Algorithm</h3>
+            <iframe class="map-frame" src="{{ url_for('static', filename='pathfinding_map_Astar.html') }}"></iframe>
+        </div>
+    </div>
 </body>
 </html>

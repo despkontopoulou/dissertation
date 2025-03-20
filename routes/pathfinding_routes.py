@@ -80,25 +80,27 @@ def visualize_path():
     dijkstra_path= dijkstra.dijkstra_search(start, goal)
     astar_path= astar.astar_search(start, goal)
 
-    start_lat, start_lon = G.nodes[start]['y'], G.nodes[start]['x']
-    m= folium.Map(location=[start_lat, start_lon],zoom_start=1)
 
     def nodes_to_coords(path):
         return [(G.nodes[node]['y'], G.nodes[node]['x']) for node in path]
 
-    # Plot Dijkstra Path in Blue
-    folium.PolyLine(nodes_to_coords(dijkstra_path), color="blue", weight=5, opacity=0.7, tooltip="Dijkstra").add_to(m)
+    def draw_path(path, line_color, name):
+        start_lat, start_lon = G.nodes[path[0]]['y'], G.nodes[path[0]]['x']
+        goal_lat, goal_lon = G.nodes[path[-1]]['y'], G.nodes[path[-1]]['x']
+        m= folium.Map(location=[start_lat, start_lon],zoom_start=15)
 
-    # Plot A* Path in Red
-    folium.PolyLine(nodes_to_coords(astar_path), color="red", weight=5, opacity=0.7, tooltip="A*").add_to(m)
+        folium.PolyLine(nodes_to_coords(path), color= line_color, weight=5, opacity=0.7).add_to(m)
 
-    # Mark Start and Goal
-    folium.Marker(location=[start_lat, start_lon], popup="Start", icon=folium.Icon(color="green")).add_to(m)
-    goal_lat, goal_lon = G.nodes[goal]['y'], G.nodes[goal]['x']
-    folium.Marker(location=[goal_lat, goal_lon], popup="Goal", icon=folium.Icon(color="red")).add_to(m)
+        # mark start goal
+        folium.Marker(location=[start_lat, start_lon], popup="Start", icon=folium.Icon(color="green")).add_to(m)
+        goal_lat, goal_lon = G.nodes[goal]['y'], G.nodes[goal]['x']
+        folium.Marker(location=[goal_lat, goal_lon], popup="Goal", icon=folium.Icon(color="red")).add_to(m)
+        m.fit_bounds([[start_lat, start_lon], [goal_lat, goal_lon]], padding=(50, 50))
 
-    # Save map to HTML and return it
-    map_path = "static/pathfinding_map.html"
-    m.save(map_path)
+        # save map to HTML and return it
+        map_path = "static/pathfinding_map_"+name+".html"
+        m.save(map_path)
 
+    draw_path(dijkstra_path,"blue","Dijkstra")
+    draw_path(astar_path,"red","Astar")
     return render_template("pathfinding/map_template.html")
