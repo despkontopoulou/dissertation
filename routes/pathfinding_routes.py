@@ -86,7 +86,6 @@ def visualize_path():
 
     def draw_path(path, line_color, name):
         start_lat, start_lon = G.nodes[path[0]]['y'], G.nodes[path[0]]['x']
-        goal_lat, goal_lon = G.nodes[path[-1]]['y'], G.nodes[path[-1]]['x']
         m= folium.Map(location=[start_lat, start_lon],zoom_start=15)
 
         folium.PolyLine(nodes_to_coords(path), color= line_color, weight=5, opacity=0.7).add_to(m)
@@ -104,3 +103,6 @@ def visualize_path():
     draw_path(dijkstra_path,"blue","Dijkstra")
     draw_path(astar_path,"red","Astar")
     return render_template("pathfinding/map_template.html")
+@pathfinding_bp.route('/select_points')
+def select_points():
+    return render_template("pathfinding/point_selection.html")

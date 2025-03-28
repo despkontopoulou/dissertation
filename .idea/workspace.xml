@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="044a156b-d4c6-4159-ad14-0fdb33618225" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/pathfinding_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/pathfinding_routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/CSS/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/CSS/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pathfinding/map_template.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pathfinding/map_template.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +93,7 @@
       <workItem from="1740668458933" duration="1928000" />
       <workItem from="1741182695509" duration="2062000" />
       <workItem from="1742402953581" duration="6210000" />
-      <workItem from="1742497312748" duration="4889000" />
+      <workItem from="1742497312748" duration="6613000" />
     </task>
     <servers />
   </component>
@@ -104,6 +101,6 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PathfindingTest$PathfindingTest.coverage" NAME="PathfindingTest Coverage Results" MODIFIED="1742502083121" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PathfindingTest$PathfindingTest.coverage" NAME="PathfindingTest Coverage Results" MODIFIED="1742502233725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
