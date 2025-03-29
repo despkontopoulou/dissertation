@@ -10,7 +10,7 @@ import osmnx as ox
 from helpers.map import load_place, convert_to_graph
 
 #graph blueprint
-pathfinding_bp= Blueprint('pathfinding', __name__)
+pathfinding_bp= git Blueprint('pathfinding', __name__)
 
 # #test graph
 # graph_data={
