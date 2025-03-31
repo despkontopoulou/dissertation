@@ -10,7 +10,7 @@ import osmnx as ox
 from helpers.map import load_place, convert_to_graph
 
 #graph blueprint
-pathfinding_bp= git Blueprint('pathfinding', __name__)
+pathfinding_bp= Blueprint('pathfinding', __name__)
 
 # #test graph
 # graph_data={
@@ -44,6 +44,9 @@ def get_nearest_node():
         return jsonify({"error": "Latitude and longitude required"}), 400
 
     nearest_node = ox.distance.nearest_nodes(G, lon, lat)  # Get closest OSM node
+    print(f"Clicked: lat={lat}, lon={lon} -> Nearest Node: {nearest_node}")
+    print(f"OSM Node Location: lat={G.nodes[nearest_node]['y']}, lon={G.nodes[nearest_node]['x']}")
+
     return jsonify({"node_id": nearest_node})
 
 @pathfinding_bp.route('/find_path', methods=['GET']) # API

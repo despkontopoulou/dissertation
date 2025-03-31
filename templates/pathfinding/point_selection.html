@@ -54,18 +54,18 @@
             var goalLon = selectedPoints[1].lng;
 
             // Get nearest nodes for start and goal
-            fetch(`/get_nearest_node?lat=${startLat}&lon=${startLon}`)
+            fetch(`/pathfinding/get_nearest_node?lat=${startLat}&lon=${startLon}`)
                 .then(response => response.json())
                 .then(data1 => {
                     let startNode = data1.node_id;
 
-                    return fetch(`/get_nearest_node?lat=${goalLat}&lon=${goalLon}`)
+                    return fetch(`/pathfinding/get_nearest_node?lat=${goalLat}&lon=${goalLon}`)
                         .then(response => response.json())
                         .then(data2 => {
                             let goalNode = data2.node_id;
 
                             // Redirect to map_template.html with the selected nodes
-                            window.location.href = `/visualize_path?start=${startNode}&goal=${goalNode}`;
+                            window.location.href = `/pathfinding/visualize_path?start=${startNode}&goal=${goalNode}`;
                         });
                 })
                 .catch(error => console.error('Error:', error));
