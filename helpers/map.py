@@ -1,7 +1,7 @@
 import osmnx as ox
 
 def load_place(place_name):
-    G = ox.graph_from_place(place_name, network_type='drive')
+    G = ox.graph_from_place(place_name, network_type='drive', simplify=False)
     G= ox.add_edge_speeds(G)
     G= ox.add_edge_travel_times(G)
     nodes, edges= ox.graph_to_gdfs(G)

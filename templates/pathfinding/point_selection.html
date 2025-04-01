@@ -14,63 +14,7 @@
 
     <button id="confirm-path" disabled>Find Path</button>
 
-    <script>
-        var map = L.map('map').setView([40.7831, -73.9712], 13); // Default center: Manhattan
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
-
-        var markers = [];
-        var selectedPoints = [];
-
-        function onMapClick(e) {
-            if (markers.length >= 2) {
-                map.removeLayer(markers[0]);
-                markers.shift();
-                selectedPoints.shift();
-            }
-
-            var marker = L.marker(e.latlng).addTo(map);
-            markers.push(marker);
-            selectedPoints.push(e.latlng);
-
-            if (selectedPoints.length === 2) {
-                document.getElementById('confirm-path').disabled = false;
-            }
-        }
-
-        map.on('click', onMapClick);
-
-        document.getElementById('confirm-path').addEventListener('click', function() {
-            if (selectedPoints.length < 2) {
-                alert("Please select two points on the map.");
-                return;
-            }
-
-            var startLat = selectedPoints[0].lat;
-            var startLon = selectedPoints[0].lng;
-            var goalLat = selectedPoints[1].lat;
-            var goalLon = selectedPoints[1].lng;
-
-            // Get nearest nodes for start and goal
-            fetch(`/pathfinding/get_nearest_node?lat=${startLat}&lon=${startLon}`)
-                .then(response => response.json())
-                .then(data1 => {
-                    let startNode = data1.node_id;
-
-                    return fetch(`/pathfinding/get_nearest_node?lat=${goalLat}&lon=${goalLon}`)
-                        .then(response => response.json())
-                        .then(data2 => {
-                            let goalNode = data2.node_id;
-
-                            // Redirect to map_template.html with the selected nodes
-                            window.location.href = `/pathfinding/visualize_path?start=${startNode}&goal=${goalNode}`;
-                        });
-                })
-                .catch(error => console.error('Error:', error));
-        });
-    </script>
+    <script src="{{ url_for('static', filename='JavaScript/pathfinding/select_points.js') }}"></script>
 
 </body>
 </html>
