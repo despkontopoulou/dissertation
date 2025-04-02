@@ -46,3 +46,35 @@ button:hover {
     height: 600px;  /* Adjust height for better visibility */
     border: 1px solid #ccc; /* Optional border */
 }
+.centered-container {
+    text-align: center; /* Centers text elements (h2, p, button) */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers children horizontally */
+    justify-content: center; /* Centers children vertically if needed */
+    margin-top: 20px;
+}
+
+#map {
+    height: 500px;
+    width: 80%;
+    margin: 20px auto; /* Centers map */
+    border-radius: 10px;
+}
+
+#confirm-path {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#confirm-path:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+

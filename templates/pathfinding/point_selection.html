@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Select Points</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/base.css') }}">
+{% extends "base.html" %}
+{% block title %}Select Points{% endblock %}
+{% block content %}
+    <div class="centered-container">
+        <h2>Select Start and Goal Points</h2>
+        <p>Click on the map to select a start and goal location.</p>
+
+        <div id="map"></div>
+
+        <button id="confirm-path" disabled>Find Path</button>
+    </div>
+{% endblock %}
+{% block scripts %}
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
-</head>
-<body>
-    <h2>Select Start and Goal Points</h2>
-    <p>Click on the map to select a start and goal location.</p>
-
-    <div id="map" style="height: 500px; width: 80%; margin: auto;"></div>
-
-    <button id="confirm-path" disabled>Find Path</button>
-
     <script src="{{ url_for('static', filename='JavaScript/pathfinding/select_points.js') }}"></script>
-
-</body>
-</html>
+{% endblock %}

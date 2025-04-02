@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Pathfinding Visualization</title>
-    <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='CSS/base.css') }}">
-</head>
-<body>
-    <h2>Path Visualization</h2>
+{% extends 'base.html' %}
+{% block title %}Map Template{% endblock %}
+{% block content %}
+    <h2 class="centered-container">Path Visualization</h2>
      <div class="map-container">
         <div>
             <h3>Dijkstra's Algorithm</h3>
@@ -16,5 +12,4 @@
             <iframe class="map-frame" src="{{ url_for('static', filename='pathfinding_map_Astar.html') }}"></iframe>
         </div>
     </div>
-</body>
-</html>
+{% endblock %}
