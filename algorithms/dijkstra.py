@@ -24,6 +24,11 @@ class Dijkstra:
                 break
 
             for neighbour, weight in self.graph_obj.get_neighbours(current_node).items():
+                if neighbour not in distances:
+                    print(f"ERROR: Neighbour {neighbour} not in distances!")
+                    print(f"Current node: {current_node}")
+                    print(f"Graph neighbors: {self.graph_obj.get_neighbours(current_node)}")
+                    return float("inf"), []
                 distance = current_distance + weight
                 if distance < distances[neighbour]:
                     distances[neighbour] = distance

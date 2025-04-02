@@ -19,7 +19,7 @@ astar = Astar(graph_obj)
 dijkstra = Dijkstra(graph_obj)
 
 
-@pathfinding_bp.route('/get_nearest_node')
+@pathfinding_bp.route('/get_nearest_node', methods=['GET'])
 def get_nearest_node():
     lat = request.args.get('lat', type=float)
     lon = request.args.get('lon', type=float)
@@ -31,7 +31,7 @@ def get_nearest_node():
 
     return jsonify({"node_id": nearest_node})
 
-@pathfinding_bp.route('/find_path')
+@pathfinding_bp.route('/find_path',methods=['GET'])
 def find_path():
     start = request.args.get("start", type=int)
     goal = request.args.get("goal", type=int)
@@ -65,7 +65,6 @@ def visualize_path():
     dijkstra_path= dijkstra.dijkstra_search(start, goal)
     astar_path= astar.astar_search(start, goal)
 
-
     def nodes_to_coords(path):
         return [(G.nodes[node]['y'], G.nodes[node]['x']) for node in path]
 
@@ -73,7 +72,7 @@ def visualize_path():
         start_lat, start_lon = G.nodes[path[0]]['y'], G.nodes[path[0]]['x']
         m= folium.Map(location=[start_lat, start_lon],zoom_start=15)
 
-        folium.PolyLine(nodes_to_coords(path), color= line_color, weight=5, opacity=0.7).add_to(m)
+        folium.PolyLine(nodes_to_coords(path), color= line_color, weight=5, opacity=0.4).add_to(m)
 
         # mark start goal
         folium.Marker(location=[start_lat, start_lon], popup="Start", icon=folium.Icon(color="green")).add_to(m)
