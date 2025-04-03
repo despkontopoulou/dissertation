@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
-{% block title %}Map Template{% endblock %}
+{% block title %}Path Visualization{% endblock %}
 {% block content %}
     <h2 class="centered-container">Path Visualization</h2>
      <div class="map-container">
         <div>
             <h3>Dijkstra's Algorithm</h3>
             <iframe class="map-frame" src="{{ url_for('static', filename='pathfinding_map_Dijkstra.html') }}"></iframe>
+            <p>Computation time: {{ dijkstra_time }} seconds</p>
         </div>
         <div>
             <h3>A* Algorithm</h3>
             <iframe class="map-frame" src="{{ url_for('static', filename='pathfinding_map_Astar.html') }}"></iframe>
+            <p>Computation time: {{ astar_time }} seconds</p>
         </div>
     </div>
 {% endblock %}

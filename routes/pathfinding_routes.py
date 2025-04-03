@@ -62,13 +62,19 @@ def visualize_path():
     if not start or not goal or start not in graph_data or goal not in graph_data:
         return jsonify({"error": "Invalid start or goal"}), 400
 
-    dijkstra_path= dijkstra.dijkstra_search(start, goal)
-    astar_path= astar.astar_search(start, goal)
+    pathfinding_result = find_path().json
+    if "error" in pathfinding_result:
+        return jsonify(pathfinding_result), 400
+
+    dijkstra_path= pathfinding_result["dijkstra"]["path"]
+    astar_path= pathfinding_result["astar"]["path"]
+    dijkstra_time= pathfinding_result["dijkstra"]["time"]
+    astar_time= pathfinding_result["astar"]["time"]
 
     def nodes_to_coords(path):
         return [(G.nodes[node]['y'], G.nodes[node]['x']) for node in path]
 
-    def draw_path(path, line_color, name):
+    def draw_path(path, line_color, time, name):
         start_lat, start_lon = G.nodes[path[0]]['y'], G.nodes[path[0]]['x']
         m= folium.Map(location=[start_lat, start_lon],zoom_start=15)
 
@@ -84,9 +90,9 @@ def visualize_path():
         map_path = "static/pathfinding_map_"+name+".html"
         m.save(map_path)
 
-    draw_path(dijkstra_path,"blue","Dijkstra")
-    draw_path(astar_path,"red","Astar")
-    return render_template("pathfinding/map_template.html")
+    draw_path(dijkstra_path,"blue",dijkstra_time,"Dijkstra")
+    draw_path(astar_path,"red",astar_time,"Astar")
+    return render_template("pathfinding/map_template.html",dijkstra_time=dijkstra_time,astar_time=astar_time)
 @pathfinding_bp.route('/select_points')
 def select_points():
     return render_template("pathfinding/point_selection.html")
